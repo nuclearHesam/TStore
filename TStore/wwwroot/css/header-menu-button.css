@@ -1,0 +1,70 @@
+.header-menu-button {
+  margin-left: 20px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: Roboto;
+}
+
+.header-menu-button {
+  --primary-color: #111;
+  --hovered-color: #c84747;
+  position: relative;
+  display: flex;
+  font-weight: 600;
+  font-size: 16px;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.header-menu-button p {
+  margin: 0;
+  position: relative;
+  font-size: 16px;
+  color: var(--primary-color);
+}
+
+.header-menu-button::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  left: 0;
+  bottom: 10px;
+  background: var(--hovered-color);
+  height: 2px;
+  transition: 0.3s ease-out;
+}
+
+.header-menu-button p::before {
+  position: absolute;
+  width: 0%;
+  inset: 0;
+  color: var(--hovered-color);
+  overflow: hidden;
+  transition: 0.3s ease-out;
+}
+
+.header-menu-button:hover::after {
+  width: 100%;
+}
+
+.header-menu-button:hover p::before {
+  width: 100%;
+}
+
+#header-menu-button-home p::before {
+    content: "Home";
+}
+#header-menu-button-contactus p::before {
+    content: "ContactUs";
+}
+#header-menu-button-categories p::before {
+    content: "Categories";
+}
+#header-menu-button-login p::before {
+  content: "Login";
+}
+#header-menu-button-register p::before {
+  content: "Register";
+}

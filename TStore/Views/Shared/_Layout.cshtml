@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="~/market.png" type="image/x-icon" />
-    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />  *@
     <link rel="stylesheet" href="~/css/styles.css" />
     <link rel="stylesheet" href="~/css/header-menu-button.css" />
     <title>TStore</title>
@@ -13,13 +13,14 @@
     <div class="content">
         <!-- header -->
         <div class="header">
-            <a id="" href="index.html">
+
+            <a asp-action="Index">
+
                 <img src="~/market.png"
                      id="header-link-img"
-                     alt="market"
-                     srcset="" />
+                     alt="market"/>
 
-                <h4 id="header-link-text">TStore</h4>
+                <p style="font-family: Roboto; font-weight:bold; color:black;">TStore</p>
             </a>
 
             <!-- header-menu -->
@@ -27,8 +28,7 @@
 
                 <!-- categories -->
                 <a class="header-menu-button"
-                   id="header-menu-button-categories"
-                   href="Categories.html">
+                   id="header-menu-button-categories">
                     <p>Categories</p>
                 </a>
 

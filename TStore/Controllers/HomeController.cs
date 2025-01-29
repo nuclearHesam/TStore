@@ -1,28 +1,23 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using TStore.Models;
+using Microsoft.EntityFrameworkCore;
+using TStore.Context;
 
 namespace TStore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly TStoreContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(TStoreContext context)
         {
-            _logger = logger;
+            _context = context;
         }
-
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Categories.AsNoTracking().ToListAsync());
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

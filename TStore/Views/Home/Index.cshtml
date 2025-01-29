@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<TStore.Category>
+
+@{
     ViewData["Title"] = "TStore";
 }
 
@@ -7,9 +9,13 @@
 <div class="slider">
     <div class="slides">
         <!-- Each slide -->
-        <a class="slide" href="products/headSets">
-            <img src="image/index/slider/headset.png" alt="headset" />
-            <p>Headsets</p>
-        </a>
+        @foreach (var item in Model.Where(c => c.ShowinSlider == true))
+        {
+            <a class="slide" href="">
+                <img src="data:png;base64,@Convert.ToBase64String(item.Image)" alt="@item.Name" />
+                <p>@item.Name</p>
+            </a>
+        }
+
     </div>
 </div>

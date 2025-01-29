@@ -1,3 +1,23 @@
-﻿@{
+﻿@model List<TStore.Category>
+
+@{
     ViewData["Title"] = "Categories";
 }
+
+<link rel="stylesheet" href="~/css/categories.css" />
+
+<div id="page-content">
+    @foreach (var categoryChunk in Model.Chunk(5)) 
+    {
+        <div class="category-row">
+            @foreach (var category in categoryChunk)
+            {
+                <a class="category-col" href="">
+                    <img src="data:image/png;base64,@Convert.ToBase64String(category.Image)" alt="@category.Name" />
+                    <p>@category.Name</p>
+                </a>
+            }
+        </div>
+    }
+
+</div>

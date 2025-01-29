@@ -23,5 +23,10 @@ namespace TStore.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public async Task<IActionResult> Categories()
+        {
+            return View(await _context.Categories.AsNoTracking().ToListAsync());
+        }
     }
 }

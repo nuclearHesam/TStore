@@ -1,15 +1,14 @@
-  
-  /* ردیف محصولات */
-  .category-row {
+
+.category-row {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     padding: 10px;
     gap: 20px;
     overflow-x: auto;
-  }
-  
-  /* هر محصول */
-  .category-col {
+}
+
+.category-col {
+    width: 273.6px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,27 +19,25 @@
     padding: 15px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.1s ease, box-shadow 0.3s ease;
-    flex: 1; /* هر محصول فضای مساوی را اشغال می‌کند */
-  }
-  
-  /* هاور روی محصول */
-  .category-col:hover {
-    transform: scale(1.01); /* حرکت به بالا */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* سایه بیشتر */
-  }
-  
-  /* تصویر محصول */
-  .category-col img {
-    width: 100%; /* عرض تصویر */
-    height: auto; /* حفظ تناسب */
-    margin-bottom: 10px; /* فاصله بین تصویر و متن */
-  }
-  
-  /* متن محصول */
-  .category-col p {
-    margin: 0;
-    font-size: 20px;
-    font-weight: bold;
-    font-family: "Roboto";
-    color: #333;
-  }
+    flex: 1; 
+}
+
+    .category-col:hover {
+        transform: scale(1.01); 
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+    }
+
+    .category-col img {
+                width: 100%;
+                max-width:100px;
+        height: auto; 
+        margin-bottom: 10px;
+    }
+
+    .category-col p {
+        margin: 0;
+        font-size: 20px;
+        font-weight: bold;
+        font-family: "Roboto";
+        color: #333;
+    }

@@ -5,7 +5,7 @@ namespace TStore;
 public class Category
 {
     [Key]
-    public string CategoryId { get; set; } = Guid.NewGuid().ToString();
+    public string CategoryId { get; set; }  = default!;
 
     [Required]
     public string Name { get; set; } = default!;

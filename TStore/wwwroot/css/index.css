@@ -1,6 +1,5 @@
 .slider {
     display: flex;
-    justify-content: center;
     overflow-x:auto;
     background-color: #f1f1f1;
     border-bottom-right-radius: 10px;
@@ -11,13 +10,13 @@
 
 .slides {
     display: flex;
-    gap: 10px; /* فاصله بین هر اسلاید */
+    gap: 10px; 
 }
 
 .slide {
     display: flex;
-    flex-direction: column; /* متن و تصویر زیر هم */
-    align-items: center; /* وسط‌چین کردن محتوا */
+    flex-direction: column;
+    align-items: center; 
     text-align: center;
     padding: 10px;
     border-radius: 8px;
@@ -25,25 +24,25 @@
     
     background-color: #ffffff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.1s ease; /* انیمیشن نرم برای هاور */
+    transition: transform 0.1s ease; 
 }
 
 .slide:hover {
-    transform: scale(1.05); /* جلوه زوم هنگام هاور */
+    transform: scale(1.05);
 }
 
 .slide img {
-    width: 130px; /* عرض تصویر */
-    height: auto; /* حفظ تناسب */
-    border-radius: 5px; /* گوشه‌های گرد برای تصویر */
+    width: 130px;
+    height: auto; 
+    border-radius: 5px; 
 }
 
 .slide p {
     margin: 0;
-    margin-top: auto; /* انتقال متن به پایین */
+    margin-top: auto; 
 
-    font-size: 15px; /* اندازه متن */
-    font-weight: bold; /* ضخیم‌تر کردن متن */
+    font-size: 15px; 
+    font-weight: bold;
     font-family: "Roboto";
 
     color: #333; 

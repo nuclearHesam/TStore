@@ -65,6 +65,10 @@
 #header-menu-button-register p::before {
   content: "Register";
 }
+#header-menu-button-logout p::before {
+    content: "Logout";
+}
+/* admin */
 #header-menu-button-users p::before {
     content: "Users";
 }

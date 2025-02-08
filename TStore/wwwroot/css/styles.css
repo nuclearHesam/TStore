@@ -1,16 +1,22 @@
 @font-face {
     font-family: 'Roboto';
-    src: url("../font/Roboto-Regular.ttf");
+    src: url("/css/font/Roboto-Regular.ttf") format("truetype");
 }
 
-body {
-    background: linear-gradient( to left top, rgb(151, 10, 10), rgb(212, 15, 15), rgb(183, 12, 12) );
+html, body {
     margin: 0;
     padding: 0;
     width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to left top, rgb(151, 10, 10), rgb(212, 15, 15), rgb(183, 12, 12));
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
 }
 
 .content {
@@ -18,33 +24,32 @@ body {
     border-radius: 20px;
     box-shadow: 10px 10px 20px rgba(35, 34, 34, 0.25);
     width: calc(100% - 60px);
-    height: calc(100% - 60px);
+    min-height: calc(100vh - 60px); 
     margin: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .header {
     width: 100%;
     height: 50px;
-    overflow-x: hidden;
     display: flex;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-color: #fcd3d3;
 }
 
-    .header a {
-        text-decoration: none !important;
-        display: flex;
-        text-align: center;
-        align-items: center;
-        margin-left: 20px;
-    }
+.header a {
+    text-decoration: none !important;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
 
-    .header a img {
-        margin-left: 0px;
-        width: 50px;
-    }
-
+.header a img {
+    width: 50px;
+}
 
 #header-menu {
     display: flex;
@@ -54,4 +59,12 @@ body {
     display: flex;
     margin-left: auto;
     margin-right: 20px;
+}
+
+#page-content {
+    flex-grow: 1; 
+    width: 100%;
+    overflow-y: auto; 
+    display: flex;
+    flex-direction: column;
 }

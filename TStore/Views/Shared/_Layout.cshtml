@@ -14,11 +14,12 @@
         <!-- header -->
         <div class="header">
 
+            <!--  site link  -->
             <a asp-action="Index">
 
                 <img src="~/market.png"
                      id="header-link-img"
-                     alt="market"/>
+                     alt="market" />
 
                 <p style="font-family: Roboto; font-weight:bold; color:black;">TStore</p>
             </a>
@@ -29,6 +30,7 @@
                 <!-- categories -->
                 <a class="header-menu-button"
                    id="header-menu-button-categories"
+                   asp-controller="Home"
                    asp-action="Categories">
                     <p>Categories</p>
                 </a>
@@ -40,19 +42,34 @@
             </div>
 
             <div id="UserIdentity">
-                <a class="header-menu-button" id="header-menu-button-login">
-                    <p>Login</p>
-                </a>
-
-                <a class="header-menu-button" id="header-menu-button-register">
-                    <p>Register</p>
-                </a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <p>Hello, @User.Identity.Name</p>
+                    <a class="header-menu-button"
+                       id="header-menu-button-logout"
+                       asp-controller="Account" asp-action="Logout">
+                        <p>Logout</p>
+                    </a>
+                }
+                else
+                {
+                    <a class="header-menu-button"
+                       id="header-menu-button-login"
+                       asp-controller="Account" asp-action="Login">
+                        <p>Login</p>
+                    </a>
+                    <a class="header-menu-button"
+                       id="header-menu-button-register"
+                       asp-controller="Account" asp-action="Register">
+                        <p>Register</p>
+                    </a>
+                }
             </div>
         </div>
 
         <!-- page content -->
         <div id="page-content">
-            
+
             @RenderBody()
 
         </div>

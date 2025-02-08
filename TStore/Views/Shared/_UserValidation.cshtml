@@ -1,5 +1,32 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" href="~/market.png" type="image/x-icon" />
+    <link href="~/css/UserValidationStyles.css" rel="stylesheet" />
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+
+    <div class="content">
+
+        <!-- header -->
+        <div class="header">
+            <a asp-action="Index">
+                <img src="~/market.png"
+                     id="header-link-img"
+                     alt="market" />
+                <p style="font-family: Roboto; font-weight:bold; color:black;">TStore</p>
+            </a>
+        </div>
+
+        <!-- page content -->
+        <div id="page-content">
+
+            @RenderBody()
+
+        </div>
+    </div>
+
+</body>
+</html>

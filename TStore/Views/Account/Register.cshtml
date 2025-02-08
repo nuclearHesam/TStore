@@ -1,8 +1,46 @@
-﻿<form method="post" asp-action="Register" asp-controller="Account" >
-    <input type="text" name="username" placeholder="Username" required />
-    <input type="email" name="email" placeholder="Email" required />
-    <input type="password" name="password" placeholder="Password" required />
-    <input type="text" name="firstName" placeholder="First Name" required />
-    <input type="text" name="lastName" placeholder="Last Name" required />
-    <button type="submit">Register</button>
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_UserValidation.cshtml";
+}
+
+<form method="post" asp-action="Register" asp-controller="Account"
+      style="display:flex;
+             flex-direction: column;
+             margin:20px;
+             gap:20px;">
+
+    <div class="form-control">
+        <input class="input input-alt" placeholder="Username" name="Username" required type="text">
+        <span class="input-border input-border-alt"></span>
+    </div>
+
+    <div class="form-control">
+        <input class="input input-alt" placeholder="Email" required type="text">
+        <span class="input-border input-border-alt"></span>
+    </div>
+
+    <div class="form-control">
+        <input class="input input-alt" placeholder="Password" name="password" required type="text">
+        <span class="input-border input-border-alt"></span>
+    </div>
+
+    <div class="form-control">
+        <input class="input input-alt" placeholder="First Name" name="firstName" required type="text">
+        <span class="input-border input-border-alt"></span>
+    </div>
+
+    <div class="form-control">
+        <input class="input input-alt" placeholder="Last Name" name="lastName" required type="text">
+        <span class="input-border input-border-alt"></span>
+    </div>
+
+    <button class="button" type="submit">
+        Apply Now
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd"
+                  d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+                  clip-rule="evenodd"></path>
+        </svg>
+    </button>
 </form>
+

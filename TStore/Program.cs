@@ -4,11 +4,9 @@ using TStore.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 📌 پیکربندی DbContext
 builder.Services.AddDbContext<TStoreContext>(options =>
     options.UseSqlite("Data Source=site.db"));
 
-// 📌 اضافه کردن Identity به پروژه
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<TStoreContext>()
     .AddDefaultTokenProviders();

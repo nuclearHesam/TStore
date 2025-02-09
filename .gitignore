@@ -362,3 +362,6 @@ Migrations/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+site.db-shm
+site.db-wal

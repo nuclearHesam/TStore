@@ -8,6 +8,6 @@ namespace TStore.Data
         public TStoreContext(DbContextOptions<TStoreContext> options)
             : base(options) { }
 
-        public DbSet<Category>? Categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

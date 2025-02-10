@@ -1,24 +1,26 @@
 ﻿@font-face {
     font-family: 'Roboto';
-    src: url("/css/font/Roboto-Regular.ttf") format("truetype");
+    src: url("/css/font/Roboto-Regular.ttf") ;
 }
 
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
-    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to left top, rgb(151, 10, 10), rgb(212, 15, 15), rgb(183, 12, 12));
+    font-family: 'Roboto' !important;
 }
 
 body {
     background: linear-gradient(to left top, rgb(151, 10, 10), rgb(212, 15, 15), rgb(183, 12, 12));
-    font-family: 'Roboto', sans-serif;
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
 }
 
 .content {
@@ -26,14 +28,13 @@ body {
     border-radius: 20px;
     box-shadow: 10px 10px 20px rgba(35, 34, 34, 0.25);
     width: 50vw;
-    height: 50vw;
     max-width: 500px;
-    max-height: 500px;
-    margin: 30px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    align-items: center;
+    height: auto;
 }
+
 
 .header {
     width: 100%;
@@ -56,10 +57,7 @@ body {
         }
 
 #page-content {
-    flex-grow: 1;
     width: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 form {
@@ -82,7 +80,7 @@ form {
     border: none;
     border-bottom: var(--border-height) solid var(--border-before-color);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-family: 'Roboto',dana;
+    font-family: 'Roboto' !important;
 }
 
 .input-border {

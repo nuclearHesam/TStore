@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="~/market.png" type="image/x-icon" />
     <link rel="stylesheet" href="~/css/Adminstyles.css" />
     <link rel="stylesheet" href="~/css/header-menu-button.css" />
+    <title>@ViewData["Title"]</title>
 </head>
 <body>
     <div class="content">
@@ -25,16 +26,14 @@
             <!-- header-menu -->
             <div id="header-menu">
                 <!-- categories -->
-                <a class="header-menu-button"
-                   id="header-menu-button-categories"
-                   href="Categories.html">
-                    <p>Categories</p>
+                <a>
+                    <p>@DateOnly.FromDateTime(DateTime.Now)</p>
                 </a>
 
                 <!-- Users -->
                 <a class="header-menu-button" id="header-menu-button-users">
                     <p>Users</p>
-                </a>
+                </a> 
             </div>
 
             <div id="UserIdentity">

@@ -6,8 +6,11 @@ namespace TStore.Controllers
 {
     public class AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager) : Controller
     {
-        public IActionResult Register() => View();
-
+        public IActionResult Register()
+        {
+            ViewData["isRegisterPage"] = true;
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> Register(string username, string email, string password, string firstName, string lastName)
         {

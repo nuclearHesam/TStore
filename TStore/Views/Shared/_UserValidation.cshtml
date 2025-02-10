@@ -4,6 +4,7 @@
 <head>
     <link rel="shortcut icon" href="~/market.png" type="image/x-icon" />
     <link href="~/css/UserValidationStyles.css" rel="stylesheet" />
+    <link href="~/css/header-menu-button.css" rel="stylesheet" />
     <title>@ViewData["Title"]</title>
 </head>
 <body>
@@ -11,13 +12,33 @@
     <div class="content">
 
         <!-- header -->
-        <div class="header">
-            <a asp-action="Index">
+        <div class="header" style="">
+
+            <a asp-action="Index" asp-controller="Home">
                 <img src="~/market.png"
                      id="header-link-img"
                      alt="market" />
                 <p style="font-family: Roboto; font-weight:bold; color:black;">TStore</p>
             </a>
+
+            @{
+                bool isRegisterPage = ViewData["isRegisterPage"] != null ;
+                if (isRegisterPage)
+                {
+                    <a class="header-menu-button"
+                       id="header-menu-button-login"
+                       asp-controller="Account" asp-action="Login">
+                        <p>Login</p>
+                    </a>
+                }
+                else{
+                    <a class="header-menu-button"
+                       id="header-menu-button-register"
+                       asp-controller="Account" asp-action="Register">
+                        <p>Register</p>
+                    </a>
+                }
+            }
         </div>
 
         <!-- page content -->

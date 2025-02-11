@@ -33,9 +33,9 @@ namespace TStore.Controllers
         public IActionResult Login()=> View();
 
         [HttpPost]
-        public async Task<IActionResult> Login(string username, string password, bool rememberMe)
+        public async Task<IActionResult> Login(string username, string password, bool? rememberMe)
         {
-            var result = await signInManager.PasswordSignInAsync(username, password, rememberMe, lockoutOnFailure: false);
+            var result = await signInManager.PasswordSignInAsync(username, password, rememberMe ?? false, lockoutOnFailure: false);
 
             if (result.Succeeded)
                 return RedirectToAction("Index", "Home");

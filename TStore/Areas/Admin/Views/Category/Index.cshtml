@@ -1,0 +1,58 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<TStore.Category>
+@{
+    ViewData["Title"] = "Category";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/css/AdminCategoryIndex.css" rel="stylesheet" />
+
+<div id="row">
+
+    <div style="border: dashed 1px black;width: 50%;">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+
+            <h3>
+                Add new Category
+            </h3>
+
+            <input type="text" name="Name" placeholder="Name" value="" />
+
+            <br />
+            
+            <input type="text" name="Brands" placeholder="','" value="" />
+            
+            <br />
+            
+            <label for="FormImage">Image</label>
+            <input type="file" name="FormImage" value="" />
+            
+            <br />
+
+            <label for="ShowinSlider">Show in Slider</label>
+            <input type="checkbox" name="ShowinSlider" value="" />
+
+            <br />
+
+            <button type="submit">
+                Create
+            </button>
+
+        </form>
+    </div>
+
+    <div style="border: dashed 1px black;width: 50%;"></div>
+
+</div>
+
+<div style="padding: 20px;
+            margin: 20px;
+            display: flex;
+            gap:10px;
+            border: dashed 1px black;">
+    <table>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>

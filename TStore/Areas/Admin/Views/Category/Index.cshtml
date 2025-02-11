@@ -18,21 +18,17 @@
 
             <input type="text" name="Name" placeholder="Name" value="" />
 
-            <br />
-            
-            <input type="text" name="Brands" placeholder="','" value="" />
-            
-            <br />
-            
-            <label for="FormImage">Image</label>
-            <input type="file" name="FormImage" value="" />
-            
-            <br />
+            <input type="text" name="Brands" placeholder="Brands" value="" />
 
-            <label for="ShowinSlider">Show in Slider</label>
-            <input type="checkbox" name="ShowinSlider" value="" />
+            <label for="FormImage">
+                Image
+                <input type="file" name="FormImage" value="" />
+            </label>
 
-            <br />
+            <div style="display:flex;margin-bottom:10px;">
+                <label for="ShowinSlider">Show in Slider</label>
+                <input type="checkbox" name="ShowinSlider" value="true" />
+            </div>
 
             <button type="submit">
                 Create

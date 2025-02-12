@@ -1,12 +1,59 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model TStore.Areas.Admin.ViewModels.DashboardViewModel
 @{
     ViewData["Title"] = "Dashboard";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 
-<h2>
-    Admin Dashboard.
-</h2>
+<div style="border: 1px dotted black;
+            padding:10px;
+            margin:10px;">
+    <style>
+        a {
+            color: green;
+        }
+    </style>
+    <h3>
+        Welcome to Admin Dashboard.
+    </h3>
+    <p>
+        This is the Admin Dashboard. You can manage your store from here.
+    </p>
+    <p>
+        <a asp-controller="Product" asp-action="Index">Manage Products</a>
+    </p>
+    <p>
+        <a asp-controller="Category" asp-action="Index">Manage Categories</a>
+    </p>
+    <p>
+        <a asp-controller="Order" asp-action="Index">Manage Orders</a>
+    </p>
+    <p>
+        <a asp-controller="User" asp-action="Index">Manage Users</a>
+    </p>
+    <p>
+        <a asp-controller="Role" asp-action="Index">Manage Roles</a>
+    </p>
+    <p>
+        <a asp-controller="Permission" asp-action="Index">Manage Permissions</a>
+    </p>
+    <p>
+        <a asp-controller="RolePermission" asp-action="Index">Manage Role Permissions</a>
+    </p>
+    <p>
+        <a asp-controller="UserRole" asp-action="Index">Manage User Roles</a>
+    </p>
+</div>
 
-<a asp-area="" asp-controller="Home" asp-action="Index">TStore</a>
+<div style="border: 1px dotted black;
+            padding:10px;
+            margin:10px;">
+    <h3>Statistics</h3>
+    <p>
+        Total Category: @Model.CategoreisCount
+    </p>
+    <p>
+        Total User: @Model.UserCount
+    </p>
+</div>

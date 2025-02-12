@@ -5,17 +5,11 @@ using TStore.Data;
 
 namespace TStore.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(TStoreContext context) : Controller
     {
-        private readonly TStoreContext _context;
-
-        public HomeController(TStoreContext context)
-        {
-            _context = context;
-        }
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Categories.AsNoTracking().ToListAsync());
+            return View(await context.Categories.AsNoTracking().ToListAsync());
         }
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -26,7 +20,7 @@ namespace TStore.Controllers
 
         public async Task<IActionResult> Categories()
         {
-            return View(await _context.Categories.AsNoTracking().ToListAsync());
+            return View(await context.Categories.AsNoTracking().ToListAsync());
         }
     }
 }

@@ -1,8 +1,5 @@
 ﻿#row {
-    padding: 10px;
-    margin: 10px;
     display: flex;
-    gap: 10px;
     font-family: 'Roboto';
     font-size: 16px;
 }
@@ -23,9 +20,8 @@ form h3{
     margin-bottom:20px;
 }
 
-    form button {
+form button {
         width: 10%;
-
     }
 
 input {
@@ -38,3 +34,31 @@ label {
     align-items: center;
     gap: 5px;
 }
+
+#Category-table {
+    display: flex;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Roboto';
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+td {
+    padding: 5px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+

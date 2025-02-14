@@ -9,7 +9,7 @@ html, body {
     width: 100%;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    overflow-x: hidden; /* جلوگیری از اسکرول افقی */
+    overflow-x: hidden; 
 }
 
 body {
@@ -62,4 +62,12 @@ body {
     display: flex;
     margin-left: auto;
     margin-right: 20px;
+}
+
+.card {
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
 }

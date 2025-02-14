@@ -7,22 +7,23 @@
 
 <link href="~/css/AdminCategoryIndex.css" rel="stylesheet" />
 
+
 <div id="row">
 
-    <div style="border: dashed 1px black;width: 50%;">
+    <div class="card" style="width: 50%;">
         <form asp-action="Create" method="post" enctype="multipart/form-data">
 
             <h3>
                 Add new Category
             </h3>
 
-            <input type="text" name="Name" placeholder="Name" value="" />
+            <input type="text" name="Name" placeholder="Name" value="" required />
 
-            <input type="text" name="Brands" placeholder="Brands" value="" />
+            <input type="text" name="Brands" placeholder="Brands" value="" required />
 
             <label for="FormImage">
                 Image
-                <input type="file" name="FormImage" value="" />
+                <input type="file" name="FormImage" value="" required />
             </label>
 
             <div style="display:flex;margin-bottom:10px;">
@@ -37,18 +38,74 @@
         </form>
     </div>
 
-    <div style="border: dashed 1px black;width: 50%;"></div>
+    <div class="card" style="width: 50%;"></div>
 
 </div>
 
-<div style="padding: 20px;
-            margin: 20px;
-            display: flex;
-            gap:10px;
-            border: dashed 1px black;">
-    <table>
-        <tr>
-            <td></td>
-        </tr>
+<div class="card" id="Category-table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Brands</th>
+                <th>Show in Slider</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var category in Model)
+            {
+                <tr>
+                    <td></td>
+                    <td>
+                        <img style="width:50px; margin:0;" src="data:image/jpeg;base64,@Convert.ToBase64String(category.Image)" alt="Category Image" />
+                    </td>
+                    <td>@category.Name</td>
+                    <td>@category.Brands</td>
+                    <td>
+                        @if (@category.ShowinSlider)
+                        {
+                            <div style="color:green;">@category.ShowinSlider</div>
+                        }
+                        else
+                        {
+                            <div style="color:red;">@category.ShowinSlider</div>
+                        }
+                    </td>
+                    <td>
+                        <button type="button" onclick="deleteCategory('@category.CategoryId')">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+
     </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function deleteCategory(id) {
+            if (!confirm("Are you sure you want to delete this item?")) return;
+
+            $.ajax({
+                url: '/Admin/Category/Delete',
+                type: 'POST',
+                data: { id: id },
+                success: function (response) {
+                    if (response.success) {
+                        location.reload();
+                    } else {
+                        
+                    }
+                },
+                error: function () {
+                    alert("An error occurred while deleting.");
+                }
+            });
+        }
+
+    </script>
 </div>

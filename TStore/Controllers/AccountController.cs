@@ -11,6 +11,7 @@ namespace TStore.Controllers
             ViewData["isRegisterPage"] = true;
             return View();
         }
+        
         [HttpPost]
         public async Task<IActionResult> Register(string username, string email, string password, string firstName, string lastName)
         {

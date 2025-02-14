@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TStore.Data;
 
 namespace TStore.Areas.Admin.Controllers
@@ -10,17 +11,49 @@ namespace TStore.Areas.Admin.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View(context.Categories.AsNoTracking());
         }
 
         [HttpPost]
-        public IActionResult Create(string Name, string Brands, IFormFile FormImage, bool? ShowinSlider)
+        public async Task<IActionResult> Create(string Name, string Brands, IFormFile FormImage, bool? ShowinSlider)
         {
             bool isChecked = ShowinSlider ?? false;
 
-            // پردازش اطلاعات
+            byte[] imageData = default!;
+            if (FormImage != null)
+            {
+                using var memoryStream = new MemoryStream();
+                await FormImage.CopyToAsync(memoryStream);
+                imageData = memoryStream.ToArray();
+            }
 
-            return View("Index");
+            var category = new Category
+            {
+                CategoryId = Guid.NewGuid().ToString(),
+                Name = Name,
+                Brands = Brands,
+                ShowinSlider = isChecked,
+                Image = imageData
+            };
+
+            context.Categories.Add(category);
+            await context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var category = await context.Categories.FindAsync(id);
+
+            if (category != null)
+            {
+                context.Categories.Remove(category);
+                _ = await context.SaveChangesAsync();
+            }
+
+            return Json(new { success = true, message = "Category deleted successfully!" });
         }
     }
 }

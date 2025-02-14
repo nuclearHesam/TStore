@@ -9,7 +9,7 @@ namespace TStore.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            return View(await context.Categories.AsNoTracking().ToListAsync());
+            return View(await context.Categories.AsNoTracking().Where(c=>c.ShowinSlider == true).ToListAsync());
         }
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

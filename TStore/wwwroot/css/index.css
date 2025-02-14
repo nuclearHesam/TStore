@@ -1,49 +1,43 @@
 .slider {
     display: flex;
-    overflow-x:auto;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px;
     background-color: #f1f1f1;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-    padding: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.slides {
-    display: flex;
-    gap: 10px; 
 }
 
 .slide {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     text-align: center;
     padding: 10px;
     border-radius: 8px;
     text-decoration: none;
-    
     background-color: #ffffff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.1s ease; 
+    transition: transform 0.1s ease;
 }
 
-.slide:hover {
-    transform: scale(1.05);
-}
+    .slide:hover {
+        transform: scale(1.03);
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
 
-.slide img {
-    width: 130px;
-    height: auto; 
-    border-radius: 5px; 
-}
+    .slide img {
+        width: 130px;
+        height: auto;
+        border-radius: 5px;
+    }
 
-.slide p {
-    margin: 0;
-    margin-top: auto; 
-
-    font-size: 15px; 
-    font-weight: bold;
-    font-family: "Roboto";
-
-    color: #333; 
-}
+    .slide p {
+        margin: 0;
+        margin-top: 10px;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: "Roboto";
+        color: #333;
+    }

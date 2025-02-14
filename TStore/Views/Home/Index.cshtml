@@ -4,20 +4,15 @@
     ViewData["Title"] = "TStore";
 }
 
-<link rel="stylesheet" href="~/css/index.css"/>
+<link rel="stylesheet" href="~/css/index.css" />
 
 <div class="slider">
-    <div class="slides">
-        <!-- Each slide -->
-        @foreach (var item in Model.Where(c => c.ShowinSlider == true))
-        {
-            <a class="slide" href="">
-                <img src="data:png;base64,@Convert.ToBase64String(item.Image)" alt="@item.Name" />
-                <p>@item.Name</p>
-            </a>
-        }
-    </div>
+    <!-- Each slide -->
+    @foreach (var item in Model)
+    {
+        <a class="slide" href="">
+            <img src="data:png;base64,@Convert.ToBase64String(item.Image)" alt="@item.Name" />
+            <p>@item.Name</p>
+        </a>
+    }
 </div>
-
-
-<div style="height:500px;"></div>

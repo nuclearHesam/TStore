@@ -1,0 +1,33 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model TStore.Category
+
+@{
+    ViewData["Title"] = "Edit Category";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <h3>Edit Category</h3>
+
+        <input type="hidden" asp-for="CategoryId" />
+
+        <input type="text" asp-for="Name" placeholder="Name" required />
+        <input type="text" asp-for="Brands" placeholder="Brands" required />
+
+        <label>
+            Current Image:
+            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Image)" style="width: 50px;" />
+        </label>
+
+        <label for="FormImage">Upload New Image:</label>
+        <input type="file" name="FormImage" />
+
+        <div style="display:flex; margin-bottom:10px;">
+            <label for="ShowinSlider">Show in Slider</label>
+            <input type="checkbox" asp-for="ShowinSlider" />
+        </div>
+
+        <button type="submit">Save Changes</button>
+    </form>
+</div>

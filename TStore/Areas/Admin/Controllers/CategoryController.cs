@@ -55,5 +55,36 @@ namespace TStore.Areas.Admin.Controllers
 
             return Json(new { success = true, message = "Category deleted successfully!" });
         }
+
+        public async  Task<IActionResult> Edit(string id)
+        {
+            var category = await context.Categories.FindAsync(id);
+            return View(category);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(string CategoryId, string Name, string Brands, IFormFile? FormImage, bool ShowinSlider)
+        {
+            var category = await context.Categories.FindAsync(CategoryId);
+            if (category == null) 
+            {
+                return NotFound();
+            }
+
+            category.Name = Name;
+            category.Brands = Brands;
+            category.ShowinSlider = ShowinSlider;
+
+            if (FormImage != null)
+            {
+                using var memoryStream = new MemoryStream();
+                await FormImage.CopyToAsync(memoryStream);
+                category.Image = memoryStream.ToArray();
+            }
+
+            await context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
     }
 }

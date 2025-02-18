@@ -89,6 +89,9 @@ namespace TStore.Areas.Admin.Controllers
             string imageData = "";
             if (FormImage != null && FormImage.Length != 0)
             {
+                string path = webHostEnvironment.WebRootPath + category.Image;
+                System.IO.File.Delete(path);
+
                 string UploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
                 Directory.CreateDirectory(UploadsFolder);
 

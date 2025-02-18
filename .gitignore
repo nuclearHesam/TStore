@@ -367,3 +367,4 @@ site.db-shm
 site.db-wal
 
 /TStore/wwwroot/images
+/TStore/site.db

@@ -365,3 +365,5 @@ FodyWeavers.xsd
 
 site.db-shm
 site.db-wal
+
+/TStore/wwwroot/images

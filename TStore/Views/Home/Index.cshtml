@@ -11,7 +11,7 @@
     @foreach (var item in Model)
     {
         <a class="slide" href="">
-            <img src="data:png;base64,@Convert.ToBase64String(item.Image)" alt="@item.Name" />
+            <img src="@item.Image" alt="@item.Name" />
             <p>@item.Name</p>
         </a>
     }

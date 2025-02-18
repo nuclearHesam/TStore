@@ -7,7 +7,7 @@ namespace TStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
-    public class CategoryController(TStoreContext context) : Controller
+    public class CategoryController(IWebHostEnvironment webHostEnvironment, TStoreContext context) : Controller
     {
         public IActionResult Index()
         {
@@ -19,12 +19,19 @@ namespace TStore.Areas.Admin.Controllers
         {
             bool isChecked = ShowinSlider ?? false;
 
-            byte[] imageData = default!;
-            if (FormImage != null)
+            string imageData = "";
+            if (FormImage != null && FormImage.Length != 0)
             {
-                using var memoryStream = new MemoryStream();
-                await FormImage.CopyToAsync(memoryStream);
-                imageData = memoryStream.ToArray();
+                string UploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                Directory.CreateDirectory(UploadsFolder);
+
+                string uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetExtension(FormImage.FileName);
+                string filePath = Path.Combine(UploadsFolder, uniqueFileName);
+
+                using FileStream fileStream = new(filePath, FileMode.Create);
+                await FormImage.CopyToAsync(fileStream);
+
+                imageData = "/images/" + uniqueFileName;
             }
 
             var category = new Category
@@ -50,13 +57,17 @@ namespace TStore.Areas.Admin.Controllers
             if (category != null)
             {
                 context.Categories.Remove(category);
+
+                string path = webHostEnvironment.WebRootPath + category.Image;
+                System.IO.File.Delete(path);
+
                 _ = await context.SaveChangesAsync();
             }
 
             return Json(new { success = true, message = "Category deleted successfully!" });
         }
 
-        public async  Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(string id)
         {
             var category = await context.Categories.FindAsync(id);
             return View(category);
@@ -66,7 +77,7 @@ namespace TStore.Areas.Admin.Controllers
         public async Task<IActionResult> Edit(string CategoryId, string Name, string Brands, IFormFile? FormImage, bool ShowinSlider)
         {
             var category = await context.Categories.FindAsync(CategoryId);
-            if (category == null) 
+            if (category == null)
             {
                 return NotFound();
             }
@@ -75,11 +86,21 @@ namespace TStore.Areas.Admin.Controllers
             category.Brands = Brands;
             category.ShowinSlider = ShowinSlider;
 
-            if (FormImage != null)
+            string imageData = "";
+            if (FormImage != null && FormImage.Length != 0)
             {
-                using var memoryStream = new MemoryStream();
-                await FormImage.CopyToAsync(memoryStream);
-                category.Image = memoryStream.ToArray();
+                string UploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                Directory.CreateDirectory(UploadsFolder);
+
+                string uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetExtension(FormImage.FileName);
+                string filePath = Path.Combine(UploadsFolder, uniqueFileName);
+
+                using FileStream fileStream = new(filePath, FileMode.Create);
+                await FormImage.CopyToAsync(fileStream);
+
+                imageData = "/images/" + uniqueFileName;
+
+                category.Image = imageData;
             }
 
             await context.SaveChangesAsync();

@@ -1,4 +1,4 @@
-.slider {
+﻿.slider {
     display: flex;
     gap: 10px;
     overflow-x: auto;
@@ -20,6 +20,7 @@
     background-color: #ffffff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.1s ease;
+    gap:10px;
 }
 
     .slide:hover {
@@ -31,11 +32,12 @@
         width: 130px;
         height: auto;
         border-radius: 5px;
+        flex-grow: 1; /* تصویر تا جایی که ممکن است کشیده شود */
     }
 
     .slide p {
         margin: 0;
-        margin-top: 10px;
+        margin-top: auto; /* متن را به پایین هدایت می‌کند */
         font-size: 15px;
         font-weight: bold;
         font-family: "Roboto";

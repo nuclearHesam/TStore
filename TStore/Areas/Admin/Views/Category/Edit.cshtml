@@ -20,14 +20,16 @@
             <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Image)" style="width: 50px;" />
         </label>
 
-        <label for="FormImage">Upload New Image:</label>
-        <input type="file" name="FormImage" />
+        <label for="FormImage">
+            Upload New Image:
+            <input type="file" name="FormImage" value="" required />
+        </label>
 
         <div style="display:flex; margin-bottom:10px;">
             <label for="ShowinSlider">Show in Slider</label>
             <input type="checkbox" asp-for="ShowinSlider" />
         </div>
 
-        <button type="submit">Save Changes</button>
+        <button type="submit" style="width:40%;">Save Changes</button>
     </form>
 </div>

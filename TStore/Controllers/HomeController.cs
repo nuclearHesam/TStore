@@ -18,6 +18,7 @@ namespace TStore.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [Route("/Categories")]
         public async Task<IActionResult> Categories()
         {
             return View(await context.Categories.AsNoTracking().ToListAsync());

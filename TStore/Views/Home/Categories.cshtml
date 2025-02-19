@@ -6,18 +6,16 @@
 
 <link rel="stylesheet" href="~/css/categories.css" />
 
-<div id="page-content">
-    @foreach (var categoryChunk in Model.Chunk(5)) 
-    {
-        <div class="category-row">
-            @foreach (var category in categoryChunk)
-            {
-                <a class="category-col" href="">
-                    <img src="@category.Image" alt="@category.Name" loading="lazy" />
-                    <p>@category.Name</p>
-                </a>
-            }
-        </div>
-    }
-    
-</div>
+@foreach (var categoryChunk in Model.Chunk(5))
+{
+    <div class="category-row">
+        @foreach (var category in categoryChunk)
+        {
+            <a class="category-col" href="">
+                <img src="@category.Image" alt="@category.Name" loading="lazy" />
+                <p>@category.Name</p>
+                <div class="count">product count</div>
+            </a>
+        }
+    </div>
+}

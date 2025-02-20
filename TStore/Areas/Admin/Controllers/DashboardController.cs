@@ -13,6 +13,7 @@ namespace TStore.Areas.Admin.Controllers
         {
             return View(new DashboardViewModel
             {
+                ProductsCount = context.Products.Count(),
                 CategoreisCount = context.Categories.Count(),
                 UserCount = context.Users.Count()
             });

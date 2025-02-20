@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using TStore.Models;
 
 namespace TStore;
 public class Category
@@ -16,4 +16,7 @@ public class Category
     public string? Brands { get; set; } =default!; // split by ','
 
     public bool ShowinSlider { get; set; } = default!;
+
+
+    public List<Product> Products { get; set; }
 }

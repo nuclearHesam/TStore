@@ -9,9 +9,9 @@ namespace TStore.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            return View(await context.Categories.AsNoTracking().Where(c=>c.ShowinSlider == true).ToListAsync());
+            return View(await context.Categories.AsNoTracking().Where(c => c.ShowinSlider == true).ToListAsync());
         }
-        
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -22,6 +22,18 @@ namespace TStore.Controllers
         public async Task<IActionResult> Categories()
         {
             return View(await context.Categories.AsNoTracking().ToListAsync());
+        }
+
+        [Route("/Products")]
+        public async Task<IActionResult> Products(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return View(await context.Products.AsNoTracking().OrderBy(p => p.Name).ToListAsync());
+
+            return View(await context.Products
+                        .Where(p => p.Category.Name == name)
+                        .OrderBy(p => p.Name)
+                        .ToListAsync());
         }
     }
 }

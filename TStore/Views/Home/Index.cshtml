@@ -10,7 +10,7 @@
     <!-- Each slide -->
     @foreach (var item in Model)
     {
-        <a class="slide" href="">
+        <a class="slide" asp-action="Products" asp-route-name="@item.Name">
             <img src="@item.Image" alt="@item.Name" />
             <p>@item.Name</p>
         </a>

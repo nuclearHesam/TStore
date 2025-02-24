@@ -32,12 +32,12 @@
         width: 130px;
         height: auto;
         border-radius: 5px;
-        flex-grow: 1; /* تصویر تا جایی که ممکن است کشیده شود */
+        flex-grow: 1; 
     }
 
     .slide p {
         margin: 0;
-        margin-top: auto; /* متن را به پایین هدایت می‌کند */
+        margin-top: auto; 
         font-size: 15px;
         font-weight: bold;
         font-family: "Roboto";

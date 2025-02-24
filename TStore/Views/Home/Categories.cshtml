@@ -11,7 +11,7 @@
     <div class="category-row">
         @foreach (var category in categoryChunk)
         {
-            <a class="category-col" href="">
+            <a class="category-col" asp-action="Products" asp-route-name="@category.Name">
                 <img src="@category.Image" alt="@category.Name" loading="lazy" />
                 <p>@category.Name</p>
                 <div class="count">product count</div>

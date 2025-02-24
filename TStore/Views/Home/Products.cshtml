@@ -1,0 +1,21 @@
+﻿@model List<TStore.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<link rel="stylesheet" href="~/css/categories.css" />
+
+@foreach (var productChunk in Model.Chunk(5))
+{
+    <div class="category-row">
+        @foreach (var product in productChunk)
+        {
+            <a class="category-col" asp-action="Products" asp-route-name="@product.Name">
+                <img src="@product.Image" alt="@product.Name" loading="lazy" />
+                <p>@product.Name</p>
+                <div>@product.Price $</div>
+            </a>
+        }
+    </div>
+}

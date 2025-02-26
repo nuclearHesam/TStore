@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using TStore.Data
+@inject UserManager<ApplicationUser> UserManager
+@{
+    var user = await UserManager.GetUserAsync(User);
+    var profileImagePath = user?.Image;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -49,18 +57,25 @@
                 </a>
             </div>
 
-            <div id="UserIdentity">
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <p>Hello, @User.Identity.Name</p>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div id="UserManage">
+                    <p class="user-profile">
+                        <img src="@profileImagePath" class="profile-image" alt="Profile Image" />
+                        @User.Identity.Name
+                    </p>
+
                     <a class="header-menu-button"
                        id="header-menu-button-logout"
+                       style="margin:0;"
                        asp-controller="Account" asp-action="Logout">
                         <p>Logout</p>
                     </a>
-                }
-                else
-                {
+                </div>
+            }
+            else
+            {
+                <div id="UserIdentity">
                     <a class="header-menu-button"
                        id="header-menu-button-login"
                        asp-controller="Account" asp-action="Login">
@@ -71,8 +86,8 @@
                        asp-controller="Account" asp-action="Register">
                         <p>Register</p>
                     </a>
-                }
-            </div>
+                </div>
+            }
         </div>
 
         <!-- page content -->

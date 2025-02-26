@@ -60,10 +60,30 @@ body {
     margin-right: 20px;
 }
 
-#page-content {
-    flex-grow: 1;
-    width: 100%;
-    overflow-y: auto;
+#UserManage {
     display: flex;
-    flex-direction: column;
+    margin-left: auto;
+    gap: 20px;
+    margin-right: 20px;
 }
+
+.user-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.profile-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+}
+
+    #page-content {
+        flex-grow: 1;
+        width: 100%;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+    }

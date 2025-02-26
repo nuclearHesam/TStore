@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
-using System.Formats.Asn1;
 using TStore.Data;
 
 namespace TStore.Areas.Admin.Controllers
@@ -23,7 +20,7 @@ namespace TStore.Areas.Admin.Controllers
                 LastName = u.LastName,
                 Email = u.Email,
                 UserName = u.UserName,
-                Password = u.PasswordHash
+                Image = u.Image
             });
 
             return View(userViewModels);

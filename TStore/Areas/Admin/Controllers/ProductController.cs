@@ -16,33 +16,25 @@ namespace TStore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(string Name, decimal Price, string Brand, IFormFile FormImage, string? Description, string CategoryId)
+        public async Task<IActionResult> Create(string Name, decimal Price, string Brand, IFormFile FormImage, List<IFormFile>? Images, string? Description, string CategoryId)
         {
-            string imageData = "";
-            if (FormImage != null && FormImage.Length != 0)
-            {
-                string UploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
-                Directory.CreateDirectory(UploadsFolder);
-
-                string uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetExtension(FormImage.FileName);
-                string filePath = Path.Combine(UploadsFolder, uniqueFileName);
-
-                using FileStream fileStream = new(filePath, FileMode.Create);
-                await FormImage.CopyToAsync(fileStream);
-
-                imageData = "/images/" + uniqueFileName;
-            }
-
             Product product = new()
             {
                 ProductId = Guid.NewGuid().ToString(),
                 Name = Name,
                 Price = Price,
                 Brand = Brand,
-                Image = imageData,
+                Image = await CreateImage(FormImage),
                 Description = Description,
                 CategoryId = CategoryId
             };
+
+            List<string> imageList = [];
+            foreach (var Image in Images)
+            {
+                imageList.Add(await CreateImage(Image));
+            }
+            product.ImageList = imageList;
 
             await context.Products.AddAsync(product);
             context.SaveChanges();
@@ -59,8 +51,12 @@ namespace TStore.Areas.Admin.Controllers
             {
                 context.Products.Remove(product);
 
-                string path = webHostEnvironment.WebRootPath + product.Image;
-                System.IO.File.Delete(path);
+                System.IO.File.Delete(webHostEnvironment.WebRootPath + product.Image);
+
+                foreach (var image in product.ImageList)
+                {
+                    System.IO.File.Delete(webHostEnvironment.WebRootPath + image);
+                }
 
                 _ = await context.SaveChangesAsync();
             }
@@ -75,7 +71,7 @@ namespace TStore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(string ProductId, string Name, int Price,string Brand, IFormFile? FormImage, string Description,string CategoryId)
+        public async Task<IActionResult> Edit(string ProductId, string Name, int Price, string Brand, IFormFile? FormImage, List<IFormFile>? Images, string Description, string CategoryId)
         {
             var product = await context.Products.FindAsync(ProductId);
             if (product == null)
@@ -89,29 +85,54 @@ namespace TStore.Areas.Admin.Controllers
             product.Description = Description;
             product.CategoryId = CategoryId;
 
-            string imageData = "";
             if (FormImage != null && FormImage.Length != 0)
             {
-                string path = webHostEnvironment.WebRootPath + product.Image;
-                System.IO.File.Delete(path);
+                System.IO.File.Delete(webHostEnvironment.WebRootPath + product.Image);
+                product.Image = await CreateImage(FormImage);
+            }
 
-                string UploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
-                Directory.CreateDirectory(UploadsFolder);
 
-                string uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetExtension(FormImage.FileName);
-                string filePath = Path.Combine(UploadsFolder, uniqueFileName);
+            if (Images != null && Images.Count != 0)
+            {
+                foreach (var image in product.ImageList)
+                {
+                    System.IO.File.Delete(webHostEnvironment.WebRootPath + image);
+                }
 
-                using FileStream fileStream = new(filePath, FileMode.Create);
-                await FormImage.CopyToAsync(fileStream);
-
-                imageData = "/images/" + uniqueFileName;
-
-                product.Image = imageData;
+                List<string> imageList = [];
+                foreach (var Image in Images)
+                {
+                    imageList.Add(await CreateImage(Image));
+                }
+                product.ImageList = imageList;
             }
 
             await context.SaveChangesAsync();
 
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Details(string id)
+        {
+            return View(await context.Products.FirstOrDefaultAsync(p => p.ProductId == id));
+        }
+
+        public async Task<string> CreateImage(IFormFile formFile)
+        {
+            if (formFile != null && formFile.Length != 0)
+            {
+                string UploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                Directory.CreateDirectory(UploadsFolder);
+
+                string uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetExtension(formFile.FileName);
+                string filePath = Path.Combine(UploadsFolder, uniqueFileName);
+
+                using FileStream fileStream = new(filePath, FileMode.Create);
+                await formFile.CopyToAsync(fileStream);
+
+                return "/images/" + uniqueFileName;
+            }
+            return "";
         }
     }
 }

@@ -19,13 +19,26 @@
         <input type="text" asp-for="Brand" placeholder="Brand" required />
 
         <label>
-            Current Image:
+            Current Main Image:
             <img src="@Model.Image" style="width: 50px;" />
         </label>
 
         <label for="FormImage">
-            Upload New Image:
+            Upload New Main Image:
             <input type="file" name="FormImage" value="" />
+        </label>
+
+        <label>
+            Current Images:
+            @foreach (var image in Model.ImageList)
+            {
+                <img src="@image" style="width: 50px;" />
+            }
+        </label>
+
+        <label for="FormImage">
+            Upload New Images:
+            <input type="file" name="images" value="" multiple />
         </label>
 
         <textarea asp-for="Description" placeholder="Description" style="width:75%;max-width:75%;margin-bottom:10px;"></textarea>

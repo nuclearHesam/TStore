@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TStore;
 
@@ -9,6 +10,15 @@ public class Product
 
     [Required]
     public string Image { get; set; }
+
+    public string? Images { get; set; } // split ','
+
+    [NotMapped]
+    public List<string> ImageList
+    {
+        get => string.IsNullOrEmpty(Images) ? new List<string>() : new List<string>(Images.Split(','));
+        set => Images = string.Join(",", value);
+    }
 
     [Required]
     public string Name { get; set; }

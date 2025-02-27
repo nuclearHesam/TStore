@@ -17,8 +17,13 @@
         <input type="text" name="Brand" placeholder="Brand" value="" required />
 
         <label for="FormImage">
-            Image
+            Main Image
             <input type="file" name="FormImage" value="" required />
+        </label>
+
+        <label for="FormImage">
+            Images
+            <input type="file" name="Images" value="" multiple />
         </label>
 
         <textarea name="Description" placeholder="Description" style="width:75%;max-width:75%;margin-bottom:10px;"></textarea>
@@ -42,7 +47,6 @@
                 <th>Name</th>
                 <th>Price</th>
                 <th>Brand</th>
-                <th>Description</th>
                 <th>Category</th>
                 <th>Actions</th>
             </tr>
@@ -59,17 +63,15 @@
                     <td>@product.Name</td>
                     <td>@product.Price</td>
                     <td>@product.Brand</td>
-                    <td><textarea readonly>@product.Description</textarea></td>
                     <td>@product.Category.Name</td>
                     <td>
                         <button type="button" onclick="deleteProduct('@product.ProductId')">Delete</button>
                         <a asp-action="Edit" asp-route-id="@product.ProductId">Edit</a>
+                        <a asp-action="Details" asp-route-id="@product.ProductId">Details</a>
                     </td>
                 </tr>
             }
         </tbody>
-
-
     </table>
 
     <script>

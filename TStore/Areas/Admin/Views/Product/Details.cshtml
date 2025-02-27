@@ -1,0 +1,59 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model TStore.Product
+
+@{
+    ViewData["Title"] = "Product";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div style="padding: 20px;">
+
+    <h2>@Model.Name</h2>
+
+    <!-- images -->
+    <dvi>
+        <img src="@Model.Image" style="width:250px;" alt="Keyboard image" />
+
+        @foreach (var image in Model.ImageList)
+        {
+            <img src="@image" style=" width:150px;" />
+        }
+    </dvi>
+
+    <h3>@Model.Price</h3>
+
+    <h4>@Model.Brand</h4>
+
+    <textarea style="min-height:300px;min-width:567px;">
+        @Model.Description
+    </textarea>
+
+    <div style="display:flex;gap:5px; margin-top:10px;">
+        <button type="button" onclick="deleteProduct('@Model.ProductId')">Delete</button>
+        <a asp-action="Edit" asp-route-id="@Model.ProductId">Edit</a>
+    </div>
+
+</div>
+
+<script>
+    function deleteProduct(id) {
+        if (!confirm("Are you sure you want to delete this item?")) return;
+
+        $.ajax({
+            url: '/Admin/Product/Delete',
+            type: 'POST',
+            data: { id: id },
+            success: function (response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+
+                }
+            },
+            error: function () {
+                alert("An error occurred while deleting.");
+            }
+        });
+    }
+
+</script>

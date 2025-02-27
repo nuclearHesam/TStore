@@ -21,7 +21,7 @@ namespace TStore.Controllers
         [Route("/Categories")]
         public async Task<IActionResult> Categories()
         {
-            return View(await context.Categories.AsNoTracking().ToListAsync());
+            return View(await context.Categories.Include(c=>c.Products).OrderByDescending(c=>c.Products.Count).AsNoTracking().ToListAsync());
         }
 
         [Route("/Products")]

@@ -14,7 +14,7 @@
             <a class="category-col" asp-action="Products" asp-route-name="@category.Name">
                 <img src="@category.Image" alt="@category.Name" loading="lazy" />
                 <p>@category.Name</p>
-                <div class="count">product count</div>
+                <div class="count">@category.Products.Count() Products</div>
             </a>
         }
     </div>
